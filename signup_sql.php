@@ -20,12 +20,12 @@ $ppstm->bind_param("sss", $user_id, $hashpw , $email_adr);
 
 if ($ppstm->execute()) {
     echo '<script>
-            alert("회원가입이 완료되었습니다");
+            alert("Welcome to our site.");
             location.href = "index.php";
           </script>';
 } 
 else {
-    echo "저장 실패. 관리자에게 문의주세요.". mysqli_error($conn);
+    echo "Fail check your ip.". mysqli_error($conn);
 }
 
 $ppstm->close();

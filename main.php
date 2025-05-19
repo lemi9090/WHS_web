@@ -9,7 +9,7 @@ if (!isset($_SESSION['name'])) { //세션값 확인 일치하지 않으면 다�
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>메인화면 입니다</title>
+        <title>Hello</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
@@ -24,14 +24,14 @@ if (!isset($_SESSION['name'])) { //세션값 확인 일치하지 않으면 다�
         <div class="d-flex" id="wrapper">
             <!-- Sidebar-->
             <div class="border-end bg-white" id="sidebar-wrapper">
-                <div class="sidebar-heading border-bottom bg-light">안녕하세요</div>
+                <div class="sidebar-heading border-bottom bg-light">Hello</div>
                 <div class="list-group list-group-flush">
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="index.php">Logout</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="about.php">About</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="search_user.html">SEARCH_USER</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="bulletin/free_bulletin.php">자유게시판</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="bulletin/new_bulletin.php">방명록</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="bulletin/dictionary.php">용어사전</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../../index.php">Logout</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../../about.php">About</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../../search_user.html">SEARCH_USER</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../free_bulletin.php">free_bulletin</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../new_bulletin.php">HIHI</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../dictionary.php">dict</a>
                 </div>
             </div>
             <!-- Page content wrapper-->
@@ -51,7 +51,7 @@ if (!isset($_SESSION['name'])) { //세션값 확인 일치하지 않으면 다�
                 </nav>
                 <!-- Page content-->
                 <div class="container-fluid">
-                    <h1 class="mt-4">메인 게시판 입니다</h1>
+                    <h1 class="mt-4">Main Bulletin Board</h1>
                     <p>Team:KknockKnock</p>
                     <p>
                         template made by <code>Simple Sidebar - Start Bootstrap Template</code>

@@ -5,7 +5,7 @@ include '../../db_conn.php';
 session_start();
 
 if (!isset($_SESSION['name'])) {
-    echo "<script>alert('로그인이 필요합니다.'); window.location.href='../../index.php';</script>";
+    echo "<script>alert('Abnormal access detected. Please log in again.'); window.location.href='../../index.php';</script>";
     exit();
 }
 
@@ -66,10 +66,10 @@ if ($file && !empty($file['file_path'])) { // 파일 정보가 유효한지 확�
         readfile($file_path);
         exit;
     } else {
-        echo "파일을 찾을 수 없습니다.";
+        echo "we couldn't find the file.";
     }
 } else {
-    echo "해당 게시물의 파일 정보를 찾을 수 없습니다.";
+    echo "file not found.";
 }
 
 $ppstm->close();

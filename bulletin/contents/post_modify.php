@@ -4,7 +4,7 @@ include '/var/www/html/db_conn.php';
 session_start();
 
 if (!isset($_SESSION['name'])) {
-    echo "<script>alert('비정상적인 접근입니다. 다시 로그인 해주세요.'); window.location.href='../../index.php';</script>";
+    echo "<script>alert('Abnormal access detected. Please log in again.'); window.location.href='../../index.php';</script>";
     exit();
 }
 
@@ -18,7 +18,7 @@ if (isset($_SESSION['board_id'])) {
 
 
 if ($post_id == 0) {
-    echo "<script>alert('잘못된 접근입니다.'); history.back();</script>";
+    echo "<script>alert('Invalid access.'); history.back();</script>";
     exit();
 }
 
@@ -30,13 +30,13 @@ $check_stmt->execute();
 $check_result = $check_stmt->get_result();
 
 if ($check_result->num_rows === 0) {
-    echo "<script>alert('존재하지 않는 게시물입니다.'); history.back();</script>";
+    echo "<script>alert('Post does not exist.'); history.back();</script>";
     exit();
 }
 
 $check_row = $check_result->fetch_assoc();
 if (strcasecmp(trim($check_row['writer']), trim($username)) !== 0) {
-    echo "<script>alert('게시물을 수정할 권한이 없습니다.'); history.back();</script>";
+    echo "<script>alert('You do not have permission to modify this post.'); history.back();</script>";
     exit();
 }
 
@@ -59,14 +59,14 @@ if (!empty($_FILES['SelectFile']['name'])) {
 
     // 각 디렉터리가 있는지 확인
     if (!is_dir($userDir) && !mkdir($userDir, 0777, true)) {
-        error_log("사용자 이름으로 디렉토리 생성 실패!: " . error_get_last()['message']);
-        echo '<script>alert("사용자 이름으로 디렉토리 생성 실패!"); history.back();</script>';
+        error_log("Failed to create directory with username." . error_get_last()['message']);
+        echo '<script>alert("Failed to create directory with username."); history.back();</script>';
         exit;
     }
 
     if (!is_dir($titleDir) && !mkdir($titleDir, 0777, true)) {
-        error_log("글 제목으로 디렉터리 만들기 실패! " . error_get_last()['message']);
-        echo '<script>alert("글 제목으로 디렉터리 만들기 실패!"); history.back();</script>';
+        error_log("Failed to create directory with post title." . error_get_last()['message']);
+        echo '<script>alert("Failed to create directory with post title."); history.back();</script>';
         exit;
     }
 
@@ -74,13 +74,13 @@ if (!empty($_FILES['SelectFile']['name'])) {
     $upload_file = $titleDir . '/' . basename($_FILES['SelectFile']['name']); //파일 디렉토리 공격 방지
     
     $image_type = $_FILES['SelectFile']['type'];
-    if ($image_type != "image/png" && $image_type != "image/jpeg") {
-        echo '<script>alert("올릴 수 있는 파일은 png, jpg 파일뿐입니다."); history.back();</script>';
-        exit;
-    }
+    // if ($image_type != "image/png" && $image_type != "image/jpeg") {
+    //     echo '<script>alert("Only PNG and JPG files are allowed."); history.back();</script>';
+    //     exit;
+    // }
 
     if (!move_uploaded_file($_FILES['SelectFile']['tmp_name'], $upload_file)) {
-        echo '<script>alert("파일 업로드 실패"); history.back();</script>';
+        echo '<script>alert("File upload failed."); history.back();</script>';
         exit;
     }
 
@@ -107,7 +107,7 @@ if ($title && $content) {
         exit();
     } else {
         echo "<script>
-      alert('게시물 수정에 실패했습니다.');
+      alert('Failed to modify the post.');
       history.back();</script>";
     }
 }

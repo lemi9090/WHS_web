@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['name'])) {
-    echo "<script>alert('로그인이 필요합니다.'); window.location.href='../../index.php';</script>";
+    echo "<script>alert('Abnormal access detected. Please log in again.'); window.location.href='../../index.php';</script>";
     exit();
 }
 
@@ -15,7 +15,7 @@ if (isset($_SESSION['board_id'])) {
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>글 작성</title>
+        <title>Create Post</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
@@ -35,9 +35,9 @@ if (isset($_SESSION['board_id'])) {
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../../index.php">Logout</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../../about.php">About</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../../search_user.html">SEARCH_USER</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../free_bulletin.php">자유게시판</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../new_bulletin.php">인사게시판</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../dictionary.php">용어사전</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../free_bulletin.php">free_bulletin</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../new_bulletin.php">HIHI</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../dictionary.php">dict</a>
                 </div>
             </div>
             <!-- Page content wrapper-->
@@ -50,25 +50,25 @@ if (isset($_SESSION['board_id'])) {
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                                 <li class="nav-item active"><a class="nav-link" href="../../main.php">Home</a></li>
-                                <li class="nav-item"><a class="nav-link" href="https://www.google.com/finance/">Link</a></li>
+                                <li class="nav-item"><a class="nav-link" href="https://www.naver.com">Link</a></li>
                             </ul>
                         </div>
                     </div>
                 </nav>
                 <!-- Page content-->
                 <div class="container-fluid">
-                    <h1 class="mt-4">글 작성</h1>
+                    <h1 class="mt-4">Create Post</h1>
                     <form enctype="multipart/form-data" action="new_upload.php" method="POST">
                         <div id="in_title">
-                            <textarea name="post_title" id="post_title" rows="1" cols="55" placeholder="제목" maxlength="100" required></textarea>
+                            <textarea name="post_title" id="post_title" rows="1" cols="55" placeholder="Title" maxlength="100" required></textarea>
                         </div>
                         <div id="in_content">
-                            <textarea name="post_content" id="post_content" placeholder="내용" required></textarea>
+                            <textarea name="post_content" id="post_content" placeholder="Content" required></textarea>
                         </div>
                         <input type="hidden" name="board_id" value="<?php echo isset($boardid) ? $boardid : ''; ?>" />
                         <input type="file" name="SelectFile"/>
                         <div class="bt_se">
-                            <button type="submit">글 작성</button>
+                            <button type="submit">Submit Post</button>
                         </div>
                     </form>
                 </div>

@@ -4,7 +4,7 @@ include '/var/www/html/db_conn.php';
 session_start();
 
 if (!isset($_SESSION['name'])) {
-    echo "<script>alert('로그인이 필요합니다.'); window.location.href='../index.php';</script>";
+    echo "<script>alert('Abnormal access detected. Please log in again.'); window.location.href='../index.php';</script>";
     exit();
 }
 $_SESSION['board_id'] = 3;
@@ -17,7 +17,7 @@ $board_id = isset($_SESSION['board_id']) ? $_SESSION['board_id'] : null;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>자유게시판 입니다</title>
+    <title>게시물 검색</title>
     <link href="../css/styles.css" rel="stylesheet" />
     <style>
     .list-table th, .list-table td {
@@ -48,9 +48,6 @@ $board_id = isset($_SESSION['board_id']) ? $_SESSION['board_id'] : null;
     .list-table th:nth-child(3), .list-table td:nth-child(3) { width: 8%; } /* 글쓴이 */
     .list-table th:nth-child(4), .list-table td:nth-child(4) { width: 15%; } /* 작성일 */
     </style>
-
-
-
 </head>
 <body>
     <div class="d-flex" id="wrapper">
@@ -58,12 +55,12 @@ $board_id = isset($_SESSION['board_id']) ? $_SESSION['board_id'] : null;
         <div class="border-end bg-white" id="sidebar-wrapper">
             <div class="sidebar-heading border-bottom bg-light">자유게시판</div>
             <div class="list-group list-group-flush">
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../index.php">Logout</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../about.php">About</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../search_user.html">SEARCH_USER</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="free_bulletin.php">자유게시판</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="new_bulletin.php">인사게시판</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="dictionary.php">용어사전</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../../index.php">Logout</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../../about.php">About</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../../search_user.html">SEARCH_USER</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../free_bulletin.php">free_bulletin</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../new_bulletin.php">HIHI</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../dictionary.php">dict</a>
             </div>
         </div>
         <!-- Page content wrapper -->
@@ -77,7 +74,7 @@ $board_id = isset($_SESSION['board_id']) ? $_SESSION['board_id'] : null;
                         <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                             <li class="nav-item active"><a class="nav-link" href="../main.php">Home</a></li>
                             <li class="nav-item"><a class="nav-link" href="https://www.google.com/finance/">Link</a></li>
-                            <li class="nav-item"><a class="nav-link" href="contents/write_post.php">게시물 등록</a></li>
+                            <li class="nav-item"><a class="nav-link" href="contents/write_post.php">Post upload</a></li>
                             
                         </ul >
                     </div>
@@ -93,9 +90,9 @@ $board_id = isset($_SESSION['board_id']) ? $_SESSION['board_id'] : null;
                              <form method="GET">
                                 <label for="order">정렬 방식:</label>
                                 <select name="sort_order" onchange="this.form.submit()">
-                                    <option value="create_date_desc" <?php if (isset($_GET['sort_order']) && $_GET['sort_order'] == 'create_date_desc') echo 'selected'; ?>>작성일 내림차순</option>
-                                    <option value="create_date_asc" <?php if (isset($_GET['sort_order']) && $_GET['sort_order'] == 'create_date_asc') echo 'selected'; ?>>작성일 오름차순</option>
-                                    <option value="writer_asc" <?php if (isset($_GET['sort_order']) && $_GET['sort_order'] == 'writer_asc') echo 'selected'; ?>>글쓴이 이름 순</option>
+                                    <option value="create_date_desc" <?php if (isset($_GET['sort_order']) && $_GET['sort_order'] == 'create_date_desc') echo 'selected'; ?>>Newest First</option>
+                                    <option value="create_date_asc" <?php if (isset($_GET['sort_order']) && $_GET['sort_order'] == 'create_date_asc') echo 'selected'; ?>>Oldest First</option>
+                                    <option value="writer_asc" <?php if (isset($_GET['sort_order']) && $_GET['sort_order'] == 'writer_asc') echo 'selected'; ?>>Author Name</option>
                                 </select>
                             </form>
 
@@ -103,16 +100,16 @@ $board_id = isset($_SESSION['board_id']) ? $_SESSION['board_id'] : null;
                             <form method="GET" action="">
                                 <input type="text" name="search_query" placeholder="검색어 입력" value="<?php echo htmlspecialchars($_GET['search_query'] ?? ''); ?>" required>
                                 <select name="search_type">
-                                    <option value="subject" <?php if (isset($_GET['search_type']) && $_GET['search_type'] == 'subject') echo 'selected'; ?>>제목</option>
-                                    <option value="writer" <?php if (isset($_GET['search_type']) && $_GET['search_type'] == 'writer') echo 'selected'; ?>>작성자</option>
-                                    <option value="contents" <?php if (isset($_GET['search_type']) && $_GET['search_type'] == 'contents') echo 'selected'; ?>>내용</option>
+                                    <option value="subject" <?php if (isset($_GET['search_type']) && $_GET['search_type'] == 'subject') echo 'selected'; ?>>Title</option>
+                                    <option value="writer" <?php if (isset($_GET['search_type']) && $_GET['search_type'] == 'writer') echo 'selected'; ?>>Author</option>
+                                    <option value="contents" <?php if (isset($_GET['search_type']) && $_GET['search_type'] == 'contents') echo 'selected'; ?>>Content</option>
                                 </select>
                                 <select name="search_order">
-                                    <option value="create_date_desc" <?php if (isset($_GET['search_order']) && $_GET['search_order'] == 'create_date_desc') echo 'selected'; ?>>작성일 내림차순</option>
-                                    <option value="create_date_asc" <?php if (isset($_GET['search_order']) && $_GET['search_order'] == 'create_date_asc') echo 'selected'; ?>>작성일 오름차순</option>
-                                    <option value="writer_asc" <?php if (isset($_GET['search_order']) && $_GET['search_order'] == 'writer_asc') echo 'selected'; ?>>작성자 이름 순</option>
+                                    <option value="create_date_desc" <?php if (isset($_GET['search_order']) && $_GET['search_order'] == 'create_date_desc') echo 'selected'; ?>>Newest First</option>
+                                    <option value="create_date_asc" <?php if (isset($_GET['search_order']) && $_GET['search_order'] == 'create_date_asc') echo 'selected'; ?>>Oldest First</option>
+                                    <option value="writer_asc" <?php if (isset($_GET['search_order']) && $_GET['search_order'] == 'writer_asc') echo 'selected'; ?>>Author Name</option>
                                 </select>
-                                <button type="submit">검색</button>
+                                <button type="submit">Search</button>
                             </form>
 
                             <!-- 게시판 목록 표시 -->
@@ -187,7 +184,7 @@ $board_id = isset($_SESSION['board_id']) ? $_SESSION['board_id'] : null;
                                                     echo "</tr>";
                                                 }
                                             } else {
-                                                echo "<tr><td colspan='4'>검색 결과가 없습니다.</td></tr>";
+                                                echo "<tr><td colspan='4'>No results found.</td></tr>";
                                             }
                                             $stmt->close();
                                         }
@@ -208,10 +205,10 @@ $board_id = isset($_SESSION['board_id']) ? $_SESSION['board_id'] : null;
                                                         echo "</tr>";
                                                     }
                                                 } else {
-                                                    echo "<tr><td colspan='4'>게시물이 없습니다.</td></tr>";
+                                                    echo "<tr><td colspan='4'>No post</td></tr>";
                                                 }
                                             } else {
-                                                echo "<tr><td colspan='4'>접근 권한이 없습니다.</td></tr>";
+                                                echo "<tr><td colspan='4'>Invalid access.</td></tr>";
                                             }
                                         }
                                         ?>

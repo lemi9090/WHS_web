@@ -4,7 +4,7 @@ include '/var/www/html/db_conn.php';
 session_start();
 
 if (!isset($_SESSION['name'])) {
-    echo "<script>alert('로그인이 필요합니다.'); window.location.href='../../index.php';</script>";
+    echo "<script>alert('Abnormal access detected. Please log in again.'); window.location.href='../../index.php';</script>";
     exit();
 }
 
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_comment_id']))
     
     if ($row['writer'] != $current_user) {
         error_log("Delete attempt failed: User does not have permission");
-        echo "<script>alert('삭제 권한이 없습니다.'); window.history.back();</script>";
+        echo "<script>alert('your not '); window.history.back();</script>";
         exit();
     }
 
@@ -46,10 +46,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_comment_id']))
         
         if ($stmt_delete->affected_rows > 0) {
             error_log("Parent comment and its replies deleted successfully: " . $comment_id);
-            echo "<script>alert('부모 댓글과 자식 댓글들이 삭제되었습니다.'); window.location.href='post_list.php?id=$post_id';</script>";
+            echo "<script>alert('success'); window.location.href='post_list.php?id=$post_id';</script>";
         } else {
             error_log("Delete failed: " . $stmt_delete->error);
-            echo "<script>alert('댓글 삭제 실패.'); window.history.back();</script>";
+            echo "<script>alert('fail'); window.history.back();</script>";
         }
     }
     else
@@ -61,10 +61,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_comment_id']))
 
         if ($stmt_delete->affected_rows > 0) {
             error_log("Child comment deleted successfully: " . $comment_id);
-            echo "<script>alert('댓글이 삭제되었습니다.'); window.location.href='post_list.php?id=$post_id';</script>";
+            echo "<script>alert('success'); window.location.href='post_list.php?id=$post_id';</script>";
         } else {
             error_log("Delete failed: " . $stmt_delete->error);
-            echo "<script>alert('댓글 삭제 실패.'); window.history.back();</script>";
+            echo "<script>alert('fail'); window.history.back();</script>";
         }
     }
     $stmt_check->close();

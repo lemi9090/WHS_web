@@ -20,9 +20,9 @@ CREATE TABLE `bulletin_boards` (
 
 -- 게시판 종류 추가
 INSERT INTO bulletin_boards (name) VALUES
-('자유게시판'),
-('인사게시판'),
-('용어게시판');
+('free_bulletin'),
+('HIHI'),
+('dict');
 
 -- free_bulletin 테이블
 CREATE TABLE `free_bulletin` (
@@ -58,3 +58,11 @@ CREATE TABLE comments (
     CONSTRAINT comments_ibfk_1 FOREIGN KEY (post_id) REFERENCES free_bulletin (id) ON DELETE CASCADE,
     CONSTRAINT fk_comments_parent_id FOREIGN KEY (parent_id) REFERENCES comments (id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- 더미 유저 추가 -- 발표때는 좀 더 그럴듯하게 바꿀게요~
+INSERT INTO users (user_id, user_pw, email_adr) VALUES
+('alex2024', 'qwer1234', 'alex@example.com'),
+('bruce001', 'qwer1234', 'bruce@example.com'),
+('carla999', 'qwer1234', 'carla@example.com'),
+('daisy777', 'qwer1234', 'daisy@example.com'),
+('evanx333', 'qwer1234', 'evan@example.com');

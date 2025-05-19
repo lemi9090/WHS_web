@@ -4,9 +4,9 @@
 
     $id = trim($_POST['input_id']); // 공백 제거 후 입력 받음
     $pw = $_POST['input_pw'];
-    if (strlen($id) < 20 || strlen($pw) < 20) { 
+    if (strlen($id) < 8 || strlen($pw) < 8) { 
         echo "<script>
-            alert(\"입력 값이 너무 짧습니다. 20자리 이상으로 입력해 주세요.\");
+            alert(\"check your id or pwd\");
             history.back();
           </script>";
         exit;
@@ -28,7 +28,7 @@
 
     if($result->num_rows==0){
         echo "<script> 
-        alert(\"일치하는 아이디가 없습니다.\");
+        alert(\"Not found\");
         history.back();
         </script>";
         exit;

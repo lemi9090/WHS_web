@@ -4,7 +4,7 @@ include '/var/www/html/db_conn.php';
 session_start();
 
 if (!isset($_SESSION['name'])) {
-    echo "<script>alert('로그인이 필요합니다.'); window.location.href='../../index.php';</script>";
+    echo "<script>alert('Abnormal access detected. Please log in again..'); window.location.href='../../index.php';</script>";
     exit();
 }
 
@@ -13,7 +13,7 @@ $current_user = $_SESSION['name'];
 $post_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
 if ($post_id == 0) {
-    echo "<script>alert('잘못된 접근입니다.'); window.location.href='../free_bulletin.php';</script>";
+    echo "<script>alert('Abnormal access detected. Please log in again.'); window.location.href='../free_bulletin.php';</script>";
     exit();
 }
 
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_comment_id'])) {
 // 게시물 조회
 $post_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 if ($post_id == 0) {
-    echo "<script>alert('잘못된 접근입니다.'); window.location.href='../free_bulletin.php';</script>";
+    echo "<script>alert('Abnormal access detected. Please log in again.'); window.location.href='../free_bulletin.php';</script>";
     exit();
 }
 
@@ -66,7 +66,7 @@ $result = $stmt->get_result();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>자유게시판 입니다</title>
+    <title>Free bulletin</title>
     <link href="../../css/styles.css" rel="stylesheet" />
     <style>
     .post-content {
@@ -114,14 +114,14 @@ $result = $stmt->get_result();
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
         <div class="border-end bg-white" id="sidebar-wrapper">
-            <div class="sidebar-heading border-bottom bg-light">자유게시판</div>
+            <div class="sidebar-heading border-bottom bg-light">free bulletin</div>
             <div class="list-group list-group-flush">
                 <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../../index.php">Logout</a>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../../about.php">About</a>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../../search_user.html">SEARCH_USER</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../free_bulletin.php">자유게시판</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../new_bulletin.php">인사게시판</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../dictionary.php">용어사전</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../free_bulletin.php">free_bulletin</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../new_bulletin.php">HIHI</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../dictionary.php">dict</a>
             </div>
         </div>
         <!-- Page content wrapper -->
@@ -135,7 +135,7 @@ $result = $stmt->get_result();
                         <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                             <li class="nav-item active"><a class="nav-link" href="../../main.php">Home</a></li>
                             <li class="nav-item"><a class="nav-link" href="https://www.google.com/finance/">Link</a></li>
-                            <li class="nav-item"><a class="nav-link" href="write_post.php">게시물 등록</a></li>
+                            <li class="nav-item"><a class="nav-link" href="write_post.php">Post Upload</a></li>
                         </ul>
                     </div>
                 </div>
@@ -165,7 +165,7 @@ $result = $stmt->get_result();
                             }
                             echo '</div>';
                         } else {
-                            echo "<p>게시물을 찾을 수 없습니다. <a href='../free_bulletin.php'>게시판으로 돌아가기</a></p>";
+                            echo "<p>Post not found <a href='../free_bulletin.php'>게시판으로 돌아가기</a></p>";
                         }
                         ?>
 
@@ -173,8 +173,8 @@ $result = $stmt->get_result();
                         <div class="comment-form">
                             <form action="" method="POST">
                                 <input type="hidden" name="post_id" value="<?php echo $post_id; ?>">
-                                <textarea name="comment_content" rows="4" cols="50" placeholder="댓글을 입력하세요..." required></textarea><br>
-                                <button type="submit" class="btn btn-primary">댓글 등록</button>
+                                <textarea name="comment_content" rows="4" cols="50" placeholder="plz comment" required></textarea><br>
+                                <button type="submit" class="btn btn-primary">comment upload</button>
                             </form>
                         </div>
 
@@ -195,7 +195,7 @@ $result = $stmt->get_result();
                                         echo '<div class="reply">';
                                     }
                                     echo '<p><strong>' . htmlspecialchars($comment_row['writer']) . ':</strong> ' . nl2br(htmlspecialchars($comment_row['contents'])) . '</p>';
-                                    echo '<p>작성일: ' . $comment_row['create_date'] . '</p>';
+                                    echo '<p>date: ' . $comment_row['create_date'] . '</p>';
                                     
                                     // 대댓글 입력 폼
                                     if ($comment_row['parent_id'] == null) {
@@ -203,8 +203,8 @@ $result = $stmt->get_result();
                                         echo '<form action="" method="POST">';
                                         echo '<input type="hidden" name="post_id" value="' . $post_id . '">';
                                         echo '<input type="hidden" name="parent_id" value="' . $comment_row['id'] . '">';
-                                        echo '<textarea name="comment_content" rows="2" cols="50" placeholder="답글을 입력하세요..." required></textarea><br>';
-                                        echo '<button type="submit" class="btn btn-secondary">답글 등록</button>';
+                                        echo '<textarea name="comment_content" rows="2" cols="50" placeholder="plz comment" required></textarea><br>';
+                                        echo '<button type="submit" class="btn btn-secondary">comment uplaod</button>';
                                         echo '</form>';
                                         echo '</div>';  
                                     }
@@ -214,21 +214,21 @@ $result = $stmt->get_result();
                                         echo '<form action="" method="POST" style="display: inline;">';
                                         echo '<input type="hidden" name="edit_comment_id" value="' . $comment_row['id'] . '">';
                                         echo '<textarea name="edit_comment_content" rows="2" cols="50" required>' . htmlspecialchars($comment_row['contents']) . '</textarea>';
-                                        echo '<button type="submit" class="btn btn-warning">수정</button>';
+                                        echo '<button type="submit" class="btn btn-warning">modify</button>';
                                         echo '</form>';
                                     }
                                     if ($comment_row['writer'] == $current_user) {
                                         echo '<form action="delete_comment.php" method="POST" style="display: inline;">';
                                         echo '<input type="hidden" name="delete_comment_id" value="' . $comment_row['id'] . '">';
                                         echo '<input type="hidden" name="post_id" value="' . $post_id . '">';
-                                        echo '<button type="submit" class="btn btn-danger">삭제</button>';
+                                        echo '<button type="submit" class="btn btn-danger">remove</button>';
                                         echo '</form>';
                                     }
 
                                     echo '</div>';
                                 }
                             } else {
-                                echo '<p>댓글이 없습니다.</p>';
+                                echo '<p>no comment.</p>';
                             }
                             echo '</div>';  // 전체 댓글 섹션을 닫는 태그
 
