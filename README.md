@@ -39,7 +39,8 @@ mysql> SELECT user, host, plugin FROM mysql.user WHERE user='root';
 +------+-----------+-------------+
 ```
 auth_socket 이면 외부 접근이 안됨.
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '[원하는비번]';하고 FLUSH PRIVILEGES;로 초기화
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '[원하는비번]'; 
+하고 FLUSH PRIVILEGES;로 초기화
 ```
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'aaaaa';
 FLUSH PRIVILEGES;
