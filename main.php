@@ -52,7 +52,7 @@ if (!isset($_SESSION['name'])) { //세션값 확인 일치하지 않으면 다�
                 <!-- Page content-->
                 <div class="container-fluid">
                     <h1 class="mt-4">Main Bulletin Board</h1>
-                    <p>Team:KknockKnock</p>
+                    <p>Team:Tung Tung Tung</p>
                     <p>
                         template made by <code>Simple Sidebar - Start Bootstrap Template</code>
                         use this template <code>#LEMI</code>
