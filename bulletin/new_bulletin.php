@@ -102,7 +102,7 @@ $board_id = isset($_SESSION['board_id']) ? $_SESSION['board_id'] : null; # 삼�
 
                             <!-- 게시물 검색 기능 -->
                             <form method="GET" action="">
-                                <input type="text" name="search_query" placeholder="검색어 입력" value="<?php echo htmlspecialchars($_GET['search_query'] ?? ''); ?>" required>
+                                <input type="text" name="search_query" placeholder="search" value="<?php echo htmlspecialchars($_GET['search_query'] ?? ''); ?>" required>
                                 <select name="search_type">
                                     <option value="subject" <?php if (isset($_GET['search_type']) && $_GET['search_type'] == 'subject') echo 'selected'; ?>>Title</option>
                                     <option value="writer" <?php if (isset($_GET['search_type']) && $_GET['search_type'] == 'writer') echo 'selected'; ?>>Author</option>
