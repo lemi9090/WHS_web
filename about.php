@@ -38,13 +38,13 @@ if (!isset($_SESSION['name'])) { //세션값 확인 일치하지 않으면 다�
     <button type = "button" id ='back' class='btn btn-primary mb-3'>뒤로가기</button>
 
     <h1>
-        만든 날짜 : 24.05.27
+        date : 24.05.27
     </h1>
     <h2>
-        만든 사람 : lemi
+        who : lemi
     </h2>
     <h3>
-        보통 뭘 적지..?
+        tung tung tung
     </h3>
     
     <script>

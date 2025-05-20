@@ -17,7 +17,7 @@ $board_id = isset($_SESSION['board_id']) ? $_SESSION['board_id'] : null;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>게시물 검색</title>
+    <title>search</title>
     <link href="../css/styles.css" rel="stylesheet" />
     <style>
     .list-table th, .list-table td {
@@ -55,12 +55,12 @@ $board_id = isset($_SESSION['board_id']) ? $_SESSION['board_id'] : null;
         <div class="border-end bg-white" id="sidebar-wrapper">
             <div class="sidebar-heading border-bottom bg-light">자유게시판</div>
             <div class="list-group list-group-flush">
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../../index.php">Logout</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../../about.php">About</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../../search_user.html">SEARCH_USER</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../free_bulletin.php">free_bulletin</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../new_bulletin.php">HIHI</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../dictionary.php">dict</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../index.php">Logout</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../about.php">About</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../search_user.html">SEARCH_USER</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="free_bulletin.php">free_bulletin</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="new_bulletin.php">HIHI</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="dictionary.php">dict</a>
             </div>
         </div>
         <!-- Page content wrapper -->
@@ -98,7 +98,7 @@ $board_id = isset($_SESSION['board_id']) ? $_SESSION['board_id'] : null;
 
                             <!-- 게시물 검색 기능 -->
                             <form method="GET" action="">
-                                <input type="text" name="search_query" placeholder="검색어 입력" value="<?php echo htmlspecialchars($_GET['search_query'] ?? ''); ?>" required>
+                                <input type="text" name="search_query" placeholder="search" value="<?php echo htmlspecialchars($_GET['search_query'] ?? ''); ?>" required>
                                 <select name="search_type">
                                     <option value="subject" <?php if (isset($_GET['search_type']) && $_GET['search_type'] == 'subject') echo 'selected'; ?>>Title</option>
                                     <option value="writer" <?php if (isset($_GET['search_type']) && $_GET['search_type'] == 'writer') echo 'selected'; ?>>Author</option>
@@ -116,10 +116,10 @@ $board_id = isset($_SESSION['board_id']) ? $_SESSION['board_id'] : null;
                             <table class="list-table">
                                 <thead>
                                     <tr>
-                                        <th>번호</th>
-                                        <th>제목</th>
-                                        <th>글쓴이</th>
-                                        <th>작성일</th>
+                                        <th>no</th>
+                                        <th>title</th>
+                                        <th>author</th>
+                                        <th>date</th>
                                     </tr>
                                 </thead>
                                 <tbody>

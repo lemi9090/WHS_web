@@ -59,12 +59,12 @@ $board_id = isset($_SESSION['board_id']) ? $_SESSION['board_id'] : null; # 삼�
         <div class="border-end bg-white" id="sidebar-wrapper">
             <div class="sidebar-heading border-bottom bg-light">Free bulletin</div>
             <div class="list-group list-group-flush">
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../../index.php">Logout</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../../about.php">About</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../../search_user.html">SEARCH_USER</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../free_bulletin.php">free_bulletin</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../new_bulletin.php">HIHI</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../dictionary.php">dict</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../index.php">Logout</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../about.php">About</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="../search_user.html">SEARCH_USER</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="free_bulletin.php">free_bulletin</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="new_bulletin.php">HIHI</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="dictionary.php">dict</a>
             </div>
         </div>
         <!-- Page content wrapper -->
@@ -120,10 +120,10 @@ $board_id = isset($_SESSION['board_id']) ? $_SESSION['board_id'] : null; # 삼�
                             <table class="list-table">
                                 <thead>
                                     <tr>
-                                        <th>번호</th>
-                                        <th>제목</th>
-                                        <th>글쓴이</th>
-                                        <th>작성일</th>
+                                        <th>no</th>
+                                        <th>title</th>
+                                        <th>author</th>
+                                        <th>date</th>
                                     </tr>
                                 </thead>
                                 <tbody>

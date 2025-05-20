@@ -12,7 +12,7 @@
         exit;
     }
     
-    if (preg_match('/[\'";#-]/', $user_id) || preg_match('/[\'";#-]/', $hashpw)) {
+    if (preg_match('/[\'";#-]/', $id) || preg_match('/[\'";#-]/', $pw)) {
         echo "<script>alert('pleas don't try');</script>";
         exit;
     }
@@ -28,25 +28,24 @@
 
     if($result->num_rows==0){
         echo "<script> 
-        alert(\"Not found\");
+        alert(\"User not found.\");
         history.back();
         </script>";
         exit;
     }else{
         $row = $result->fetch_assoc(); // fetch_assoc함수는 행의 이름을 키값으로 데이터를 value로 할당
-        if (!password_verify($pw, $row['user_pw'])){ //row에서 user_pw라는 행(키)을 참조해 비교
-            //passord_verify가 알아서 저장된 pw(암호화)와 입력된 pw(평문)을 비교해준다. 
+        if ($pw != $row['user_pw']) {
             echo "<script>
-                    alert(\"비밀번호가 일치하지 않습니다.\");
+                    alert(\"Incorrect password.\");
                     history.back();
-                  </script>";
+                </script>";
             exit;
         } else {
-            session_regenerate_id(true); //세션 보안을 위해 추가 = 중복 세션 생성 방지 
+            session_regenerate_id(true);
             $_SESSION['name'] = $row['user_id'];
             mysqli_close($conn);
-            header("Location: main.php");//html 폼의 action처럼 다음 행선지를 네비게이션 함.
+            header("Location: main.php");
             exit();
         }
     }
-    ?>
+?>
